@@ -1,6 +1,4 @@
-import { useState, useEffect } from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 import Header from "./components/header";
 import Search from "./components/search";
 import Results from "./components/results";
@@ -13,6 +11,7 @@ function App() {
   const [searchResults, setSearchResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [selectedImg, setSelectedImg] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(null);
 
   function searchTerms(e) {
     e.preventDefault();
@@ -36,14 +35,31 @@ function App() {
   }
 
   function openOverlay(img) {
-    console.log(img);
     setSelectedImg(img);
   }
 
   const closeOverlay = () => {
     setSelectedImg(null);
   };
-  console.log(loading);
+
+  const handleDownload = async () => {
+    const url = selectedImg[selectedSize]; // Get the URL for the selected size
+    try {
+      const response = await fetch(url);
+      const blob = await response.blob(); // Create a blob from the response
+      const downloadUrl = window.URL.createObjectURL(blob); // Create an object URL from the blob
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.setAttribute("download", `image-${selectedSize}.jpg`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(downloadUrl); // Clean up the object URL
+    } catch (error) {
+      console.error("Error during download", error);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -65,8 +81,8 @@ function App() {
                     })}
                   </div>
                   <section className="results">
-                    {searchResults.hits.slice(0, 6).map((hit) => {
-                      return <Results hit={hit} openFn={openOverlay} />;
+                    {searchResults.hits.slice(0, 6).map((hit, i) => {
+                      return <Results hit={hit} openFn={openOverlay} key={i} />;
                     })}
                   </section>
 
@@ -74,6 +90,8 @@ function App() {
                     <Overlay
                       selectedImg={selectedImg}
                       closeOverlay={closeOverlay}
+                      setSize={setSelectedSize}
+                      handleDownload={handleDownload}
                     />
                   )}
                 </>

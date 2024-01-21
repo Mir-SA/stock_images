@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
-function Overlay({ selectedImg, closeOverlay }) {
+function Overlay({ selectedImg, closeOverlay, setSize, handleDownload }) {
   return (
     <section className="overlay">
       <div className="overlay-content">
@@ -23,31 +23,53 @@ function Overlay({ selectedImg, closeOverlay }) {
                 Small
                 <span>
                   640x960{"  "}
-                  <input type="radio" name="size" value="small" />
+                  <input
+                    type="radio"
+                    name="size"
+                    value="small"
+                    onClick={() => setSize("previewURL")}
+                  />
                 </span>
               </label>
               <label className="download-option">
                 Medium
                 <span>
                   1920x2660{"  "}
-                  <input type="radio" name="size" value="medium" />
+                  <input
+                    type="radio"
+                    name="size"
+                    value="medium"
+                    onChange={() => setSize("webformatURL")}
+                  />
                 </span>
               </label>
               <label className="download-option">
                 Big
                 <span>
                   2400x3600{"  "}
-                  <input type="radio" name="size" value="big" />
+                  <input
+                    type="radio"
+                    name="size"
+                    value="big"
+                    onChange={() => setSize("largeImageURL")}
+                  />
                 </span>
               </label>
               <label className="download-option">
                 Original
                 <span>
                   3850x5640{"  "}
-                  <input type="radio" name="size" value="original" />
+                  <input
+                    type="radio"
+                    name="size"
+                    value="original"
+                    onChange={() => setSize("largeImageURL")}
+                  />
                 </span>
               </label>
-              <button className="download-button">Download for free!</button>
+              <button className="download-button" onClick={handleDownload}>
+                Download for free!
+              </button>
             </div>
 
             {/* Information Section */}
@@ -85,8 +107,8 @@ function Overlay({ selectedImg, closeOverlay }) {
 
         <div className="tags">
           <h4>Tags: </h4>
-          {selectedImg.tags.split(",").map((tag) => (
-            <p>{tag}</p>
+          {selectedImg.tags.split(",").map((tag, i) => (
+            <p key={i}>{tag}</p>
           ))}
         </div>
       </div>

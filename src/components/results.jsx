@@ -3,24 +3,12 @@ function Results({ hit, openFn }) {
     <div key={hit.id}>
       <img src={hit.webformatURL} onClick={() => openFn(hit)} />
       <span>
-        {hit.tags.split(",").map((tag) => (
-          <p>{tag}</p>
+        {hit.tags.split(",").map((tag, i) => (
+          <p key={i}>{tag}</p>
         ))}
       </span>
     </div>
   );
 }
-
-// <div key={hit.id}>
-//   <img
-//     src={hit.webformatURL}
-//     onClick={() => openOverlay(hit)}
-//   />
-//   <span>
-//     {hit.tags.split(",").map((tag) => (
-//       <p>{tag}</p>
-//     ))}
-//   </span>
-// </div>
 
 export default Results;
