@@ -1,0 +1,53 @@
+@font-face {
+  font-family: "Euclid Circular B";
+  src: url("/stock_image/src/assets/fonts/Euclid\ Circular\ B\ Regular.woff2")
+      format("woff2"),
+    /* Modern Browsers */
+      url("/stock_image/src/assets/fonts/Euclid\ Circular\ B\ Regular.ttf")
+      format("truetype"); /* iOS and Older Browsers */
+  font-style: normal;
+}
+
+header {
+  /* fill: blue; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 95%;
+  min-height: 3rem;
+  background: #d9d9d947;
+  margin: 2.5rem auto 0rem;
+  padding: 0.75rem 0;
+  border: 3px #b6b6b66e solid;
+  border-radius: 8px;
+  color: white;
+  backdrop-filter: blur(1rem);
+}
+
+header p {
+  margin: 0 1rem;
+}
+
+header p a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: "Euclid Circular B", sans-serif;
+}
+
+header div button {
+  font-family: "Euclid Circular B", sans-serif;
+  color: white;
+  background: #d9d9d900;
+  font-weight: 600;
+  margin: 0 1rem 0 0;
+  border: none;
+  cursor: pointer;
+}
+
+header div button:last-child {
+  border: 2.5px solid white;
+  border-radius: 8px;
+  margin-right: 1rem;
+}
