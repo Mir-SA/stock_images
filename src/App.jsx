@@ -76,7 +76,16 @@ function App() {
                   <div className="related">
                     {searchResults.hits.slice(0, 2).map((hit) => {
                       {
-                        return hit.tags.split(",").map((tag) => <p>{tag}</p>);
+                        return hit.tags.split(",").map((tag) => (
+                          <p
+                            onClick={() => {
+                              setSearch(tag);
+                              fetchData();
+                            }}
+                          >
+                            {tag}
+                          </p>
+                        ));
                       }
                     })}
                   </div>
@@ -121,7 +130,6 @@ function App() {
               <b>Trending:</b> forest, love, river, flowers
             </p>
           </div>
-          {/* <div className="loader">{console.log(loading)}</div> */}
         </>
       )}
     </>

@@ -23,48 +23,56 @@ function Overlay({ selectedImg, closeOverlay, setSize, handleDownload }) {
                 Small
                 <span>
                   640x960{"  "}
-                  <input
-                    type="radio"
-                    name="size"
-                    value="small"
-                    onClick={() => setSize("previewURL")}
-                  />
+                  <span className="custom-radio">
+                    <input
+                      type="radio"
+                      name="size"
+                      onClick={() => setSize("previewURL")}
+                    />
+                    <span class="checkmark"></span>
+                  </span>
                 </span>
               </label>
               <label className="download-option">
                 Medium
                 <span>
                   1920x2660{"  "}
-                  <input
-                    type="radio"
-                    name="size"
-                    value="medium"
-                    onChange={() => setSize("webformatURL")}
-                  />
+                  <span className="custom-radio">
+                    <input
+                      type="radio"
+                      name="size"
+                      onChange={() => setSize("webformatURL")}
+                    />
+                    <span class="checkmark"></span>
+                  </span>
                 </span>
               </label>
               <label className="download-option">
                 Big
                 <span>
                   2400x3600{"  "}
-                  <input
-                    type="radio"
-                    name="size"
-                    value="big"
-                    onChange={() => setSize("largeImageURL")}
-                  />
+                  <span className="custom-radio">
+                    <input
+                      type="radio"
+                      name="size"
+                      onChange={() => setSize("largeImageURL")}
+                    />
+                    <span class="checkmark"></span>
+                  </span>
                 </span>
               </label>
               <label className="download-option">
                 Original
                 <span>
                   3850x5640{"  "}
-                  <input
-                    type="radio"
-                    name="size"
-                    value="original"
-                    onChange={() => setSize("largeImageURL")}
-                  />
+                  <span className="custom-radio">
+                    <input
+                      type="radio"
+                      name="size"
+                      onChange={() => setSize("largeImageURL")}
+                    />
+                    <span class="checkmark"></span>
+                  </span>
                 </span>
               </label>
               <button className="download-button" onClick={handleDownload}>
