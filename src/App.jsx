@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/header";
 import Search from "./components/search";
 import Results from "./components/results";
@@ -18,7 +18,7 @@ function App() {
     setSearch(e.target.value);
   }
 
-  async function fetchData() {
+  async function fetchData(search) {
     setLoading(true);
 
     try {
@@ -66,28 +66,28 @@ function App() {
       {searchResults ? (
         <>
           {loading ? (
-            <div className="loader">{console.log(loading)}</div>
+            <div className="loader"></div>
           ) : (
             <>
-              <Search searchTerms={searchTerms} fetchData={fetchData} />
+              <Search
+                searchTerms={searchTerms}
+                fetchData={() => fetchData(search)}
+              />
               {searchResults.totalHits !== 0 ? (
                 <>
                   <h2 className="resultText">Results: {search}</h2>
                   <div className="related">
-                    {searchResults.hits.slice(0, 2).map((hit) => {
-                      {
-                        return hit.tags.split(",").map((tag) => (
-                          <p
-                            onClick={() => {
-                              setSearch(tag);
-                              fetchData();
-                            }}
-                          >
-                            {tag}
-                          </p>
-                        ));
-                      }
-                    })}
+                    {searchResults.hits.slice(0, 6).map((hit, i) => (
+                      <p
+                        key={i}
+                        onClick={() => {
+                          setSearch(hit.tags.split(",")[1]);
+                          fetchData(hit.tags.split(",")[1]);
+                        }}
+                      >
+                        {hit.tags.split(",")[1]}
+                      </p>
+                    ))}
                   </div>
                   <section className="results">
                     {searchResults.hits.slice(0, 6).map((hit, i) => {
@@ -124,7 +124,10 @@ function App() {
           <h1 className="landing_txt">
             Discover over 2,000,000 free Stock Images
           </h1>
-          <Search searchTerms={searchTerms} fetchData={fetchData} />
+          <Search
+            searchTerms={searchTerms}
+            fetchData={() => fetchData(search)}
+          />
           <div className="trending">
             <p>
               <b>Trending:</b> forest, love, river, flowers
