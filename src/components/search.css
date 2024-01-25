@@ -1,0 +1,50 @@
+.search {
+  max-width: 50%;
+  min-height: 3rem;
+  background: #d9d9d947;
+  margin: 4rem auto 0rem;
+  border: 3px #b6b6b66e solid;
+  border-radius: 8px;
+  backdrop-filter: blur(1rem);
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.search svg {
+  font-size: 1.25rem;
+}
+
+.search .line {
+  content: "";
+  background: white;
+  height: 1.75rem;
+  width: 2px;
+}
+
+.search input {
+  background: #d9d9d900;
+  flex-grow: 0.8;
+  color: white;
+  border: none;
+  outline: none;
+  align-self: normal;
+}
+.search input::placeholder {
+  color: white;
+}
+
+.search button {
+  background: #d9d9d900;
+  border: 2px solid white;
+  border-radius: 8px;
+  color: white;
+  padding: 0.1rem 0.75rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.search button:hover {
+  background: #d9d9d936;
+}

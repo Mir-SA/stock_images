@@ -1,3 +1,5 @@
+import "./results.css";
+
 function Results({ hit, openFn }) {
   return (
     <div key={hit.id}>
